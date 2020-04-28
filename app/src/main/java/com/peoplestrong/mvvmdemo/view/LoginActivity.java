@@ -19,7 +19,7 @@ import com.peoplestrong.mvvmdemo.view.dashboard.DashboardActivity;
 import com.peoplestrong.mvvmdemo.view_model.ArticleViewModel;
 import com.peoplestrong.mvvmdemo.view_model.LoginViewModel;
 import com.peoplestrong.mvvmdemo.viewmodelfactory.ViewModelFactory;
-
+//Sonu Saini
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 private SharedPrefrence pref;
 private EditText edtEmail,edtPassword;
