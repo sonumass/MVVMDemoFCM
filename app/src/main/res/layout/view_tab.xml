@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.peoplestrong.mvvmdemo.customfonts.MyTextView_LoraRegular xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/tab"
+    android:gravity="center"
+    android:text="sonu"
+    android:textColor="@color/gray"
+    android:textSize="@dimen/_10ssp">
+
+</com.peoplestrong.mvvmdemo.customfonts.MyTextView_LoraRegular>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/whiteborder"
+        android:paddingBottom="@dimen/_10ssp">
+        <com.peoplestrong.mvvmdemo.customfonts.MyTextView_LoraRegular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            
+            android:padding="@dimen/_10ssp"
+            android:text="Filter your courses as per status"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/_8ssp"
+
+        android:background="@color/colorPrimaryDark"/>
+    <CheckBox
+        android:id="@+id/checkboxall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All"
+        android:layout_marginTop="@dimen/_8ssp"
+        android:paddingLeft="@dimen/_10ssp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorPrimaryDark"/>
+    <CheckBox
+        android:id="@+id/checkboxNotStarted"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/_8ssp"
+        android:layout_height="wrap_content"
+        android:text="Not Started"
+        android:paddingLeft="@dimen/_10ssp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorPrimaryDark"/>
+
+    <CheckBox
+        android:id="@+id/checkboxInProgress"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/_8ssp"
+        android:layout_height="wrap_content"
+        android:text="In Progress"
+        android:paddingLeft="@dimen/_10ssp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorPrimaryDark"/>
+    <CheckBox
+        android:id="@+id/checkboxCompleted"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/_8ssp"
+        android:layout_height="wrap_content"
+        android:text="Completed"
+        android:paddingBottom="@dimen/_10ssp"
+        android:paddingLeft="@dimen/_10ssp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="@dimen/_20ssp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginBottom="@dimen/_20ssp">
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentLeft="true"
+            android:text="Cancel"
+            android:background="@drawable/semiwhitelestborder"
+
+            android:paddingTop="@dimen/_5ssp"
+            android:paddingBottom="@dimen/_5ssp"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"/>
+        <Button
+            android:id="@+id/btnalertSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Save"
+            android:background="@drawable/semiwhiterightborder"
+            android:paddingTop="@dimen/_5ssp"
+            android:paddingBottom="@dimen/_5ssp"/>
+    </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

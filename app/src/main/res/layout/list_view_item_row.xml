@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="@dimen/nav_header_height"
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/rl_header">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingBottom="20dp"
+            android:gravity="bottom">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_userImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/userprofile"/>
+            <com.peoplestrong.mvvmdemo.customfonts.MyTextView_LatoBold
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SONU SAINI"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"/>
+            <com.peoplestrong.mvvmdemo.customfonts.MyTextView_Roboto_Regular
+                android:id="@+id/txtMailId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sonu.saini@peoplestrong.com"
+
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+
+        <ImageView
+            android:id="@+id/imageViewIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingRight="10dp" />
+
+        <com.peoplestrong.mvvmdemo.customfonts.MyTextView_LoraRegular
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageViewIcon"
+            android:paddingRight="10dp"
+            android:text="Item Name"
+            android:textColor="@android:color/tertiary_text_dark"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>
