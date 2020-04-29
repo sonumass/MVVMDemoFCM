@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,11 @@ import android.widget.TextView;
 import com.peoplestrong.mvvmdemo.MainActivity;
 import com.peoplestrong.mvvmdemo.R;
 import com.peoplestrong.mvvmdemo.adapter.MovieArticleAdapter;
+import com.peoplestrong.mvvmdemo.commonutills.CommonUtill;
+import com.peoplestrong.mvvmdemo.database.mylibrary.MyLibrary;
 import com.peoplestrong.mvvmdemo.model.Article;
+import com.peoplestrong.mvvmdemo.response.ArticalData;
+import com.peoplestrong.mvvmdemo.response.ArticleResponse;
 import com.peoplestrong.mvvmdemo.view_model.ArticleViewModel;
 
 import java.util.ArrayList;
@@ -58,10 +63,16 @@ public class AllFragment extends Fragment {
         try{
             articleArrayList.clear();
         }catch (Exception e){
-
+            Log.d("Error","All Fragment 64");
         }
         if (articleArrayList.size()<=0) {
-            getMovieArticles();
+
+            if (CommonUtill.isNetwork(getActivity())){
+                getMovieArticles();
+            }else {
+                offlineGetMovieArticles();
+            }
+
         }else {
             progress_circular_movie_article.setVisibility(View.GONE);
         }
@@ -88,13 +99,27 @@ public void init(View view){
     // View Model
     articleViewModel = ViewModelProviders.of(this).get(ArticleViewModel.class);
 }
+    private void offlineGetMovieArticles() {
+        articleViewModel.getOfflineResponseLiveData().observe(this, articleResponse -> {
+            if (articleResponse != null) {
+
+                progress_circular_movie_article.setVisibility(View.GONE);
+                List<Article> articles = articleResponse;
+                articleArrayList.addAll(articles);
+                adapter.notifyDataSetChanged();
+            }else {
+                progress_circular_movie_article.setVisibility(View.GONE);
+            }
+        });
+    }
 private void getMovieArticles() {
         articleViewModel.getArticleResponseLiveData().observe(this, articleResponse -> {
             if (articleResponse != null) {
 
                 progress_circular_movie_article.setVisibility(View.GONE);
-                List<Article> articles = articleResponse.getData();
-                articleArrayList.addAll(articles);
+                ArticalData articles = articleResponse.getData();
+                List<Article> list=new ArrayList<>();
+                articleArrayList.addAll(articles.getData());
                 adapter.notifyDataSetChanged();
             }else {
                 progress_circular_movie_article.setVisibility(View.GONE);

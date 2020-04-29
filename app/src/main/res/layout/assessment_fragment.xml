@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_10ssp"
+    android:paddingLeft="@dimen/_10ssp"
+    android:paddingRight="@dimen/_10ssp"
+
     tools:context=".view.dashboard.ui.tab.AllFragment">
 
 

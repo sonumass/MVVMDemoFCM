@@ -27,7 +27,7 @@ public class AboutUsFragment extends Fragment {
         slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                textView.setText("Work in progress");
             }
         });
         return root;

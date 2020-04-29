@@ -18,7 +18,9 @@ import android.widget.ProgressBar;
 import com.peoplestrong.mvvmdemo.MainActivity;
 import com.peoplestrong.mvvmdemo.R;
 import com.peoplestrong.mvvmdemo.adapter.MovieArticleAdapter;
+import com.peoplestrong.mvvmdemo.commonutills.CommonUtill;
 import com.peoplestrong.mvvmdemo.model.Article;
+import com.peoplestrong.mvvmdemo.response.ArticalData;
 import com.peoplestrong.mvvmdemo.view_model.ArticleViewModel;
 
 import java.util.ArrayList;
@@ -50,7 +52,9 @@ public class SurveyFragment extends Fragment {
 
         }
         if (articleArrayList.size()<=0) {
-            getMovieArticles();
+            if (CommonUtill.isNetwork(getActivity())){
+                getMovieArticles();
+            }
         }else {
             progress_circular_movie_article.setVisibility(View.GONE);
         }
@@ -81,8 +85,10 @@ public class SurveyFragment extends Fragment {
             if (articleResponse != null) {
 
                 progress_circular_movie_article.setVisibility(View.GONE);
-                List<Article> articles = articleResponse.getData();
-                articleArrayList.addAll(articles);
+                ArticalData articles = articleResponse.getData();
+                List<Article> list=new ArrayList<>();
+
+                articleArrayList.addAll(articles.getData());
                 adapter.notifyDataSetChanged();
             }else {
                 progress_circular_movie_article.setVisibility(View.GONE);

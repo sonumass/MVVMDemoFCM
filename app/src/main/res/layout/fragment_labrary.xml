@@ -15,8 +15,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:background="@color/white"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
+            android:paddingBottom="@dimen/_3ssp"
+            android:paddingTop="@dimen/_3ssp"
             >
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tablay"
@@ -25,9 +25,9 @@
                 android:background="@color/white"
                 app:tabMode="fixed"
                 app:tabGravity="fill"
+                android:layout_centerInParent="true"
                 app:tabBackground="@drawable/tab_layout_selector"
                 app:tabSelectedTextColor="@color/colorPrimaryDark"
-
                 app:tabTextColor="@color/gray"
                 app:tabIndicatorHeight="0dp"
                 app:tabRippleColor="@null"
@@ -63,13 +63,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/_3ssp">
                     <ImageView
                         android:id="@+id/iv_libraray"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20ssp"
+                        android:layout_height="@dimen/_20ssp"
+                        android:layout_gravity="center"
                         android:src="@drawable/ic_bottom_library_blue"
-                        android:padding="10dp">
+                        android:padding="@dimen/_3ssp">
 
 
                     </ImageView>
@@ -80,7 +82,7 @@
                         android:layout_gravity="center"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/imageViewIcon"
-                        android:paddingBottom="10dp"
+                        android:paddingBottom="@dimen/_3ssp"
                         android:text="My Library"
                         android:textColor="@color/blue"
                         />
@@ -91,13 +93,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/_3ssp">
                     <ImageView
                         android:id="@+id/iv_event"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20ssp"
+                        android:layout_height="@dimen/_20ssp"
+                        android:layout_gravity="center"
                         android:src="@drawable/ic_bottom_event_grey"
-                        android:padding="10dp">
+                        android:padding="@dimen/_3ssp">
 
 
                     </ImageView>
@@ -108,7 +112,7 @@
                         android:layout_gravity="center"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/imageViewIcon"
-                        android:paddingBottom="10dp"
+                        android:paddingBottom="@dimen/_3ssp"
                         android:text="Upcoming"
                         android:textColor="@android:color/tertiary_text_dark"
                        />
@@ -119,13 +123,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/_3ssp">
                     <ImageView
                         android:id="@+id/iv_scan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20ssp"
+                        android:layout_height="@dimen/_20ssp"
+                        android:layout_gravity="center"
                         android:src="@drawable/ic_bottom_scanner_grey"
-                        android:padding="10dp">
+                        android:padding="@dimen/_3ssp">
 
 
                     </ImageView>
@@ -136,7 +142,7 @@
                         android:layout_gravity="center"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/imageViewIcon"
-                        android:paddingBottom="10dp"
+                        android:paddingBottom="@dimen/_3ssp"
                         android:text="Scan"
                         android:textColor="@color/gray"
                          />
@@ -147,13 +153,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingTop="@dimen/_3ssp"
                     android:orientation="vertical">
                     <ImageView
                         android:id="@+id/iv_catlog"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_20ssp"
+                        android:layout_height="@dimen/_20ssp"
+                        android:layout_gravity="center"
                         android:src="@drawable/ic_bottom_catlog_grey"
-                        android:padding="10dp">
+                        android:padding="@dimen/_3ssp">
 
 
                     </ImageView>
@@ -164,7 +172,7 @@
                         android:layout_gravity="center"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/imageViewIcon"
-                        android:paddingBottom="10dp"
+                        android:paddingBottom="@dimen/_3ssp"
                         android:text="Catlog"
                         android:textColor="@color/gray"
                        />

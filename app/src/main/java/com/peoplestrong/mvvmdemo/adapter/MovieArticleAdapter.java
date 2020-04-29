@@ -36,6 +36,12 @@ public class MovieArticleAdapter extends RecyclerView.Adapter<MovieArticleAdapte
             R.drawable.image_11,
             R.drawable.image_10,
             R.drawable.image_11,
+            R.drawable.image_7,
+            R.drawable.image_7,
+            R.drawable.image_8,
+            R.drawable.image_11,
+            R.drawable.image_10,
+            R.drawable.image_11,
             R.drawable.image_7};
     public MovieArticleAdapter(Context context, ArrayList<Article> articleArrayList,String str) {
         this.context = context;
@@ -92,8 +98,13 @@ public class MovieArticleAdapter extends RecyclerView.Adapter<MovieArticleAdapte
 
     @Override
     public int getItemCount() {
-        //return articleArrayList.size();
-        return 10;
+        return articleArrayList.size()-1;
+        /*if(articleArrayList.size()==0){
+            return 0;
+        }else {
+            return 10;
+        }*/
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

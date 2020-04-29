@@ -1,7 +1,15 @@
 package com.peoplestrong.mvvmdemo.model;
 
 public class Article {
+    public String getCreatedAt() {
+        return createdAt;
+    }
 
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    private String createdAt;
     private String subName;
     private String work;
 

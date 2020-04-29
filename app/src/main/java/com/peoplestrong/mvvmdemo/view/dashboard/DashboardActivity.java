@@ -90,7 +90,7 @@ public class DashboardActivity extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         setupDrawerToggle();
         selectItem(0);
-        new AsyncTaskDownload().execute("https://www.tutorialspoint.com/images/tp-logo-diamond.png");
+       // new AsyncTaskDownload().execute("https://www.tutorialspoint.com/images/tp-logo-diamond.png");
     }
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
 

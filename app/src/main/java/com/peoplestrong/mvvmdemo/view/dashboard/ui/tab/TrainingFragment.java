@@ -14,11 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.peoplestrong.mvvmdemo.MainActivity;
 import com.peoplestrong.mvvmdemo.R;
 import com.peoplestrong.mvvmdemo.adapter.MovieArticleAdapter;
+import com.peoplestrong.mvvmdemo.commonutills.CommonUtill;
 import com.peoplestrong.mvvmdemo.model.Article;
+import com.peoplestrong.mvvmdemo.response.ArticalData;
 import com.peoplestrong.mvvmdemo.view_model.ArticleViewModel;
 
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ public class TrainingFragment extends Fragment {
     private MovieArticleAdapter adapter;
     private ArrayList<Article> articleArrayList = new ArrayList<>();
     ArticleViewModel articleViewModel;
+    private TextView txtTarningData;
     public static TrainingFragment newInstance() {
         return new TrainingFragment();
     }
@@ -49,14 +53,19 @@ public class TrainingFragment extends Fragment {
 
         }
         if (articleArrayList.size()<=0) {
-            getMovieArticles();
+            if (CommonUtill.isNetwork(getActivity())){
+                getMovieArticles();
+            }else {
+                txtTarningData.setVisibility(View.VISIBLE);
+                progress_circular_movie_article.setVisibility(View.GONE);
+            }
         }else {
             progress_circular_movie_article.setVisibility(View.GONE);
         }
         return root;
     }
     public void init(View view){
-
+        txtTarningData=(TextView)view.findViewById(R.id.txtTarningData);
         progress_circular_movie_article = (ProgressBar)view.findViewById(R.id.progress_circular_movie_article);
         my_recycler_view = (RecyclerView) view.findViewById(R.id.my_recycler_view);
         progress_circular_movie_article.setVisibility(View.VISIBLE);
@@ -80,8 +89,10 @@ public class TrainingFragment extends Fragment {
             if (articleResponse != null) {
 
                 progress_circular_movie_article.setVisibility(View.GONE);
-                List<Article> articles = articleResponse.getData();
-                articleArrayList.addAll(articles);
+                ArticalData articles = articleResponse.getData();
+                List<Article> list=new ArrayList<>();
+
+                articleArrayList.addAll(articles.getData());
                 adapter.notifyDataSetChanged();
             }else {
                 progress_circular_movie_article.setVisibility(View.GONE);

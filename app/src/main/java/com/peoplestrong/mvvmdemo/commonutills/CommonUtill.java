@@ -30,6 +30,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static android.Manifest.permission.ACCESS_NETWORK_STATE;
 import static android.Manifest.permission.GET_ACCOUNTS;
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -41,13 +42,9 @@ import static android.Manifest.permission_group.CAMERA;
 public class CommonUtill {
 
     public static Boolean isNetwork(Context context){
-        ConnectivityManager mgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = mgr.getActiveNetworkInfo();
-        if (netInfo.isConnected()){
-            return true;
-        }else {
-            return false;
-        }
+        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+
     }
     public static boolean isValidEmail(String target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
@@ -58,12 +55,14 @@ public class CommonUtill {
         int SecondPermissionResult = ContextCompat.checkSelfPermission(context, WRITE_EXTERNAL_STORAGE);
         int ThirdPermissionResult = ContextCompat.checkSelfPermission(context, READ_EXTERNAL_STORAGE);
         int FourPermissionResult = ContextCompat.checkSelfPermission(context, READ_CONTACTS);
+        int FivePermissionResult = ContextCompat.checkSelfPermission(context, ACCESS_NETWORK_STATE);
 
 
         return FirstPermissionResult == PackageManager.PERMISSION_GRANTED &&
                 SecondPermissionResult == PackageManager.PERMISSION_GRANTED &&
                 ThirdPermissionResult == PackageManager.PERMISSION_GRANTED  &&
-                FourPermissionResult == PackageManager.PERMISSION_GRANTED;
+                FourPermissionResult == PackageManager.PERMISSION_GRANTED  &&
+                FivePermissionResult == PackageManager.PERMISSION_GRANTED;
 
     }
     public static File CreateFolderInSDcard(){

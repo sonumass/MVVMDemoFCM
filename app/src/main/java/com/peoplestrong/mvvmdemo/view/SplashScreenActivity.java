@@ -60,7 +60,7 @@ if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
             public void run() {
                 if (pref.getBoolean("login")){
                     Intent i=new Intent(SplashScreenActivity.this,
-                            MainActivity.class);
+                            DashboardActivity.class);
                     //Intent is used to switch from one activity to another.
 
                     startActivity(i);
