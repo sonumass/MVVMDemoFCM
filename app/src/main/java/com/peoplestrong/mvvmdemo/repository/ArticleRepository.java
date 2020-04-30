@@ -15,11 +15,13 @@ import com.peoplestrong.mvvmdemo.database.db.LeaerAltDatabase;
 import com.peoplestrong.mvvmdemo.database.mylibrary.MyLibrary;
 import com.peoplestrong.mvvmdemo.database.mylibrary.MyLibraryDao;
 import com.peoplestrong.mvvmdemo.model.Article;
+import com.peoplestrong.mvvmdemo.response.ArticalData;
 import com.peoplestrong.mvvmdemo.response.ArticleResponse;
 import com.peoplestrong.mvvmdemo.retrofit.ApiRequest;
 import com.peoplestrong.mvvmdemo.retrofit.RetrofitRequest;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -47,7 +49,9 @@ public class ArticleRepository {
 
     //method to add note
     public void addMyLibrary(MyLibrary myLibrary) {
-        new AddMyLibrary().execute(myLibrary);
+
+                new AddMyLibrary().execute(myLibrary);
+
     }
     public LiveData<ArticleResponse> getMovieArticles(String query, String key) {
         final MutableLiveData<ArticleResponse> data = new MutableLiveData<>();
@@ -62,18 +66,26 @@ public class ArticleRepository {
 
 
                         if (response.body() != null) {
+
                             data.setValue(response.body());
-                            /*List<Article> list =new ArrayList<>();
-                            list=response.body().getData();
+                            myLibraryDao.deleteLibrary();
+                            List<Article> list =new ArrayList<>();
+                            ArticalData data=response.body().getData();
+                            list=data.getData();
                             for (int i = 0; i <list.size() ; i++) {
-                                Article article=new Article();
-                                long date=Long.valueOf(list.get(i).getCreatedAt());
-                                DateConverter dateConverter=new DateConverter();
-                                Date date1=dateConverter.toDate(date);
-                                String imagePath="";
-                                MyLibrary myLibrary=new MyLibrary(list.get(i).getSubName(),list.get(i).getWork(),list.get(i).getRemark(),imagePath,date1);
+                                Article article = new Article();
+                                // long date=Long.valueOf(list.get(i).getCreatedAt());
+                                DateConverter dateConverter = new DateConverter();
+                                // Date date1=dateConverter.toDate(date);
+                                Date createdAt = Calendar.getInstance().getTime();
+                                String imagePath = "";
+                                MyLibrary myLibrary = new MyLibrary(list.get(i).getSubName(), list.get(i).getWork(), list.get(i).getRemark(), imagePath, createdAt);
+                                List<Article> dbList = new ArrayList<>();
+
                                 addMyLibrary(myLibrary);
-                            }*/
+
+
+                            }
 
                             /*Log.d(TAG, "articles total result:: " + response.body().getTotalResults());
                             Log.d(TAG, "articles size:: " + response.body().getArticles().size());
@@ -93,7 +105,10 @@ public class ArticleRepository {
     public class AddMyLibrary extends AsyncTask<MyLibrary, Void, Void> {
         @Override
         protected Void doInBackground(MyLibrary... myLibraries) {
-            myLibraryDao.insertLibrary(myLibraries[0]);
+
+    myLibraryDao.insertLibrary(myLibraries[0]);
+
+
             return null;
         }
     }

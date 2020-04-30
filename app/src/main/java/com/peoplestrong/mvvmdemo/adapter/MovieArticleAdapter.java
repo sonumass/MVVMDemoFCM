@@ -42,6 +42,7 @@ public class MovieArticleAdapter extends RecyclerView.Adapter<MovieArticleAdapte
             R.drawable.image_11,
             R.drawable.image_10,
             R.drawable.image_11,
+            R.drawable.image_7,
             R.drawable.image_7};
     public MovieArticleAdapter(Context context, ArrayList<Article> articleArrayList,String str) {
         this.context = context;

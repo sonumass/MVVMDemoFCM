@@ -20,20 +20,22 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 public interface MyLibraryDao {
     @Query("select * from mylibrary")
     LiveData<List<Article>> getAllLibrary();
+    @Query("select * from mylibrary")
+    List<Article> getAllLibraryWithoutLLive();
 
     @Query("SELECT * FROM mylibrary ORDER BY subName ASC")
     LiveData<List<MyLibrary>> getAllLibraryBySubName();
 
-    @Query("select * from MyLibrary where id = :id LIMIT 1")
-    MyLibrary findDirectorByID(int id);
+    @Query("select count(id) from mylibrary where id = :id")
+    int findMyLibraryByID(int id);
 
     @Insert(onConflict = REPLACE)
     void insertLibrary(MyLibrary myLibrary);
 
-    @Query("UPDATE MyLibrary SET subName=:subName WHERE id = :id")
+    @Query("UPDATE mylibrary SET subName=:subName WHERE id = :id")
     void updateMyLibrary(String subName , int id);
 
-    @Delete
-    void deleteLibrary(MyLibrary myLibrary);
+    @Query("delete from mylibrary")
+    void deleteLibrary();
 
 }
