@@ -1,6 +1,8 @@
 package com.peoplestrong.mvvmdemo.model;
 
-public class Article {
+import java.io.Serializable;
+
+public class Article implements Serializable {
     public String getCreatedAt() {
         return createdAt;
     }

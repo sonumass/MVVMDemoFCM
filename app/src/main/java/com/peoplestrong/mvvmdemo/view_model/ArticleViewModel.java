@@ -24,7 +24,7 @@ public class ArticleViewModel extends AndroidViewModel {
         super(application);
 
         articleRepository = new ArticleRepository(application);
-        this.articleResponseLiveData = articleRepository.getMovieArticles("movies", "84a7decf3110498ea372bd16dd0601e8");
+        this.articleResponseLiveData = articleRepository.getMovieArticles(application,"movies", "84a7decf3110498ea372bd16dd0601e8");
    this.allmyLibrary=articleRepository.getAllmyLibrary();
     }
     public LiveData<List<Article>> getOfflineResponseLiveData() {

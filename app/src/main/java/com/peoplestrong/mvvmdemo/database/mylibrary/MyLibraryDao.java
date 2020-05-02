@@ -21,7 +21,7 @@ public interface MyLibraryDao {
     @Query("select * from mylibrary")
     LiveData<List<Article>> getAllLibrary();
     @Query("select * from mylibrary")
-    List<Article> getAllLibraryWithoutLLive();
+    List<MyLibrary> getAllLibraryWithoutLLive();
 
     @Query("SELECT * FROM mylibrary ORDER BY subName ASC")
     LiveData<List<MyLibrary>> getAllLibraryBySubName();

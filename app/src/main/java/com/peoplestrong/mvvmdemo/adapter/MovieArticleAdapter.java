@@ -2,11 +2,13 @@ package com.peoplestrong.mvvmdemo.adapter;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,9 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.peoplestrong.mvvmdemo.R;
 import com.peoplestrong.mvvmdemo.model.Article;
+import com.peoplestrong.mvvmdemo.videoplayer.widget.VideoPlayerActivity;
 
 
 import java.util.ArrayList;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class MovieArticleAdapter extends RecyclerView.Adapter<MovieArticleAdapter.ViewHolder> {
 
@@ -72,7 +77,9 @@ public class MovieArticleAdapter extends RecyclerView.Adapter<MovieArticleAdapte
         viewHolder.iv_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Video work in progress", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(context, VideoPlayerActivity.class);
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
      /*   Glide.with(context)
@@ -80,12 +87,14 @@ public class MovieArticleAdapter extends RecyclerView.Adapter<MovieArticleAdapte
                 .into(viewHolder.imgViewCover);*/
         if (str.equals("ALL")){
             if(i==0|| 1==5){
+                viewHolder.rl_tran.setVisibility(View.VISIBLE);
                 viewHolder.iv_play.setVisibility(View.VISIBLE);
                 viewHolder.txt_survey.setText("Training ");
             }else if (i==1|| i==3){
                 viewHolder.txt_survey.setText("Assessments");
             }else if(i==4||i==6){
                 viewHolder.iv_play.setVisibility(View.VISIBLE);
+                viewHolder.rl_tran.setVisibility(View.VISIBLE);
             }
 
         }else if(str.equals("Training")){
@@ -115,6 +124,7 @@ public class MovieArticleAdapter extends RecyclerView.Adapter<MovieArticleAdapte
         private final TextView tvDescription;
         private final TextView txt_survey;
         private final ImageView iv_play;
+        private final RelativeLayout rl_tran;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -124,6 +134,7 @@ public class MovieArticleAdapter extends RecyclerView.Adapter<MovieArticleAdapte
             tvAuthorAndPublishedAt=(TextView) itemView.findViewById(R.id.tvAuthorAndPublishedAt);
             tvDescription=(TextView) itemView.findViewById(R.id.tvDescription);
             txt_survey=(TextView)itemView.findViewById(R.id.txt_survey);
+            rl_tran=(RelativeLayout)itemView.findViewById(R.id.rl_tran);
         }
     }
 }

@@ -14,6 +14,7 @@ import com.peoplestrong.mvvmdemo.database.DateConverter;
 import com.peoplestrong.mvvmdemo.database.db.LeaerAltDatabase;
 import com.peoplestrong.mvvmdemo.database.mylibrary.MyLibrary;
 import com.peoplestrong.mvvmdemo.database.mylibrary.MyLibraryDao;
+import com.peoplestrong.mvvmdemo.database.service.SaveDataIntentService;
 import com.peoplestrong.mvvmdemo.model.Article;
 import com.peoplestrong.mvvmdemo.response.ArticalData;
 import com.peoplestrong.mvvmdemo.response.ArticleResponse;
@@ -46,14 +47,7 @@ public class ArticleRepository {
     public LiveData<List<Article>> getAllmyLibrary() {
         return allmyLibrary;
     }
-
-    //method to add note
-    public void addMyLibrary(MyLibrary myLibrary) {
-
-                new AddMyLibrary().execute(myLibrary);
-
-    }
-    public LiveData<ArticleResponse> getMovieArticles(String query, String key) {
+    public LiveData<ArticleResponse> getMovieArticles(Context context,String query, String key) {
         final MutableLiveData<ArticleResponse> data = new MutableLiveData<>();
         apiRequest.getMovieArticles(query, key)
                 .enqueue(new Callback<ArticleResponse>() {
@@ -68,28 +62,11 @@ public class ArticleRepository {
                         if (response.body() != null) {
 
                             data.setValue(response.body());
-                            myLibraryDao.deleteLibrary();
                             List<Article> list =new ArrayList<>();
                             ArticalData data=response.body().getData();
                             list=data.getData();
-                            for (int i = 0; i <list.size() ; i++) {
-                                Article article = new Article();
-                                // long date=Long.valueOf(list.get(i).getCreatedAt());
-                                DateConverter dateConverter = new DateConverter();
-                                // Date date1=dateConverter.toDate(date);
-                                Date createdAt = Calendar.getInstance().getTime();
-                                String imagePath = "";
-                                MyLibrary myLibrary = new MyLibrary(list.get(i).getSubName(), list.get(i).getWork(), list.get(i).getRemark(), imagePath, createdAt);
-                                List<Article> dbList = new ArrayList<>();
-
-                                addMyLibrary(myLibrary);
-
-
-                            }
-
-                            /*Log.d(TAG, "articles total result:: " + response.body().getTotalResults());
-                            Log.d(TAG, "articles size:: " + response.body().getArticles().size());
-                            Log.d(TAG, "articles title pos 0:: " + response.body().getArticles().get(0).getTitle());*/
+                            SaveDataIntentService saveDataIntentService=new SaveDataIntentService();
+                            saveDataIntentService.startActionFoo(context,"AllFrament","save", (ArrayList<Article>) list);
                         }
                     }
 
