@@ -2,7 +2,6 @@ package com.peoplestrong.mvvmdemo.adapter;
 
 import android.content.Context;
 
-import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +14,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.peoplestrong.mvvmdemo.R;
 import com.peoplestrong.mvvmdemo.model.Article;
-import com.peoplestrong.mvvmdemo.videoplayer.widget.VideoPlayerActivity;
 
 
 import java.util.ArrayList;
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class MovieArticleAdapter extends RecyclerView.Adapter<MovieArticleAdapter.ViewHolder> {
 
@@ -77,9 +72,10 @@ public class MovieArticleAdapter extends RecyclerView.Adapter<MovieArticleAdapte
         viewHolder.iv_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, VideoPlayerActivity.class);
+                Toast.makeText(context,"Work in Progress",Toast.LENGTH_LONG).show();
+                /*Intent intent=new Intent(context, VideoPlayerActivity.class);
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                context.startActivity(intent);*/
             }
         });
      /*   Glide.with(context)

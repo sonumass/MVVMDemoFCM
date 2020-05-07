@@ -20,6 +20,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.peoplestrong.mvvmdemo.R;
 import com.peoplestrong.mvvmdemo.commonutills.CommonUtill;
 import com.peoplestrong.mvvmdemo.commonutills.SharedPrefrence;
@@ -60,6 +63,13 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         pref=new SharedPrefrence(DashboardActivity.this);
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(DashboardActivity.this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String fcmToken=instanceIdResult.getToken();
+                Log.e("Token",fcmToken);
+            }
+        });
         mTitle = mDrawerTitle = getTitle();
         mNavigationDrawerItemTitles= new String[6];
         mNavigationDrawerItemTitles[0]="My Library";

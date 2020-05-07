@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "812892703562",
+    "firebase_url": "https://mvvmapp-d95ba.firebaseio.com",
+    "project_id": "mvvmapp-d95ba",
+    "storage_bucket": "mvvmapp-d95ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812892703562:android:c11b27244d66bd173a8fb3",
+        "android_client_info": {
+          "package_name": "com.peoplestrong.mvvmdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812892703562-qjao4ud0hlavtbr805884gm61hpae4l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtjdctq1bUz4I3cDaEyRnNkBQ_lmQ7iOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812892703562-qjao4ud0hlavtbr805884gm61hpae4l2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

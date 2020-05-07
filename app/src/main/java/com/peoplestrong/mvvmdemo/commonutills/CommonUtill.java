@@ -1,8 +1,10 @@
 package com.peoplestrong.mvvmdemo.commonutills;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
@@ -34,8 +36,10 @@ import static android.Manifest.permission.ACCESS_NETWORK_STATE;
 import static android.Manifest.permission.GET_ACCOUNTS;
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.RECEIVE_BOOT_COMPLETED;
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.SEND_SMS;
+import static android.Manifest.permission.WAKE_LOCK;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.Manifest.permission_group.CAMERA;
 
@@ -56,13 +60,17 @@ public class CommonUtill {
         int ThirdPermissionResult = ContextCompat.checkSelfPermission(context, READ_EXTERNAL_STORAGE);
         int FourPermissionResult = ContextCompat.checkSelfPermission(context, READ_CONTACTS);
         int FivePermissionResult = ContextCompat.checkSelfPermission(context, ACCESS_NETWORK_STATE);
+        int SIXPermissionResult = ContextCompat.checkSelfPermission(context, WAKE_LOCK);
+        int SEVENPermissionResult = ContextCompat.checkSelfPermission(context, RECEIVE_BOOT_COMPLETED);
 
 
         return FirstPermissionResult == PackageManager.PERMISSION_GRANTED &&
                 SecondPermissionResult == PackageManager.PERMISSION_GRANTED &&
                 ThirdPermissionResult == PackageManager.PERMISSION_GRANTED  &&
                 FourPermissionResult == PackageManager.PERMISSION_GRANTED  &&
-                FivePermissionResult == PackageManager.PERMISSION_GRANTED;
+                FivePermissionResult == PackageManager.PERMISSION_GRANTED &&
+                SIXPermissionResult == PackageManager.PERMISSION_GRANTED  &&
+                SEVENPermissionResult == PackageManager.PERMISSION_GRANTED;
 
     }
     public static File CreateFolderInSDcard(){
@@ -125,5 +133,28 @@ public class CommonUtill {
         Log.i("filepath:"," "+filepath) ;
         return filepath;
     }
+public static void showDialog(Context context,String str){
+    AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+    builder1.setMessage(str);
+    builder1.setCancelable(true);
 
+    builder1.setPositiveButton(
+            "Yes",
+            new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+
+    builder1.setNegativeButton(
+            "No",
+            new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+
+    AlertDialog alert11 = builder1.create();
+    alert11.show();
+}
 }

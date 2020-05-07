@@ -2,6 +2,13 @@ package com.peoplestrong.mvvmdemo.view.dashboard.ui.tab;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+
+import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.peoplestrong.mvvmdemo.MainActivity;
 import com.peoplestrong.mvvmdemo.R;
@@ -22,6 +30,7 @@ import com.peoplestrong.mvvmdemo.adapter.MovieArticleAdapter;
 import com.peoplestrong.mvvmdemo.commonutills.CommonUtill;
 import com.peoplestrong.mvvmdemo.database.mylibrary.MyLibrary;
 import com.peoplestrong.mvvmdemo.model.Article;
+import com.peoplestrong.mvvmdemo.receiver.NotificationReceiver;
 import com.peoplestrong.mvvmdemo.response.ArticalData;
 import com.peoplestrong.mvvmdemo.response.ArticleResponse;
 import com.peoplestrong.mvvmdemo.view_model.ArticleViewModel;
@@ -29,10 +38,12 @@ import com.peoplestrong.mvvmdemo.view_model.ArticleViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.peoplestrong.mvvmdemo.commonutills.CommonUtill.showDialog;
+
 public class AllFragment extends Fragment {
 
     private AllViewModel mViewModel;
-
+    AllNotificationReceiver notificationReceiver;
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private RecyclerView my_recycler_view;
@@ -80,7 +91,8 @@ public class AllFragment extends Fragment {
         return root;
     }
 public void init(View view){
-
+    notificationReceiver = new AllNotificationReceiver();
+    getActivity().registerReceiver(notificationReceiver, new IntentFilter("GET_SIGNAL_STRENGTH"));
     progress_circular_movie_article = (ProgressBar)view.findViewById(R.id.progress_circular_movie_article);
     my_recycler_view = (RecyclerView) view.findViewById(R.id.my_recycler_view);
     progress_circular_movie_article.setVisibility(View.VISIBLE);
@@ -128,10 +140,67 @@ private void getMovieArticles() {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        //getActivity().registerReceiver(notificationReceiver, new IntentFilter("GET_SIGNAL_STRENGTH"));
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().unregisterReceiver(notificationReceiver);
+    }
+public void getshow(String str){
+        Log.e("str::::",str);
+//    Toast.makeText(getActivity(),str+"",Toast.LENGTH_LONG).show();
+       /* if (getActivity()!=null){
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+            builder1.setMessage(str);
+            builder1.setCancelable(true);
+
+            builder1.setPositiveButton(
+                    "Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+        }*/
+
+}
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(AllViewModel.class);
         // TODO: Use the ViewModel
+
     }
+    class AllNotificationReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if(intent.getAction().equals("GET_SIGNAL_STRENGTH"))
+            {
+                String level = intent.getStringExtra("title");
+                Log.e("All notif",level+"");
+                Toast.makeText(getActivity(),level+"",Toast.LENGTH_LONG).show();
+               // showDialog(getActivity(),level);
+            }
+        }
+    }
+
 
 }
